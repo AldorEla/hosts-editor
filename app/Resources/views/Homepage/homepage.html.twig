@@ -1,0 +1,85 @@
+{% extends '::layout.html.twig' %}
+
+{% block header %}
+   <h1>Your Local Hosts Editor</h1>
+{% endblock %}
+
+{% block body %}
+    <details class="display-block">Easy TOOL to add your local hosts in your Ubuntu distribution.</details>
+    <!-- <p>These are your localhosts:</p>
+    <div class="row no-margin">
+        <div class="col-xs-6">
+            <ul class="row no-margin">
+                <li class="col-xs-12 no-padding">
+                    <div class="row no-margin">
+                        <div class="col-xs-4">IP:</div>
+                        <div class="col-xs-4">Host Name:</div>
+                        <div class="col-xs-4">Action:</div>
+                    </div>
+                </li>
+                <li class="col-xs-12 no-padding">
+                    <div class="row no-margin">
+                        <div class="col-xs-4">127.0.0.1</div>
+                        <div class="col-xs-4">hosts_editor.local</div>
+                        <div class="col-xs-4"><button>Edit</button></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+    {% if hosts|length %}
+        <p>These are your localhosts:</p>
+        <div class="row no-margin">
+            <div class="col-xs-6">
+                <ul class="row no-margin">
+                    <li class="col-xs-12 no-padding">
+                        <div class="row no-margin">
+                            <div class="col-xs-4">IP:</div>
+                            <div class="col-xs-4">Host Name:</div>
+                            <div class="col-xs-4">Action:</div>
+                        </div>
+                    </li>
+                    {% for key, host in hosts %}
+                        <li class="col-xs-12 no-padding">
+                            <div class="row no-margin">
+                                <div class="col-xs-4">{{ host.ip }}</div>
+                                <div class="col-xs-4">{{ host.name }}</div>
+                                <div class="col-xs-4"><button id="{{ host.id }}">Edit</button></div>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="col-xs-12 padding-vertical-10">There are no hosts added yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <!-- <div class="row no-margin">
+            <div class="col-xs-12">
+                <div id="example"></div>
+                <script type="text/babel" src="{{ asset('js/build/helloworld.js') }}"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+            </div>
+        </div> -->
+        <div class="row no-margin">
+            <div class="col-xs-12">
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.5/react.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.5/react-dom.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
+                <div id="content"></div>
+                <script type="text/babel" src="{{ asset('js/build/comments.js') }}"></script>
+                <script type="text/babel">
+                  // To get started with this tutorial running your own code, simply remove
+                  // the script tag loading scripts/example.js and start writing code here.
+                </script>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block footer %}
+   footer
+{% endblock %}
