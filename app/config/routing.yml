@@ -1,3 +1,7 @@
+ela_chat:
+    resource: "@ElaChatBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
