@@ -25,7 +25,6 @@ body {
 	font-weight: 400;
 }
 header, main, footer {
-	width: 100%;
 	padding: 0 10px;
 }
 .header-container, .main-container, .footer-container {
@@ -89,4 +88,34 @@ header, footer {
 	flex: none;
 }
 /** End: Sticky footer **/
+/**--------------------**/
+
+/** Grid rules **/
+.row {
+	margin: 0 -15px;
+}
+.col-custom-* {
+	padding: 0 15px;
+}
+.col-custom-12 {
+	width: 100%;
+}
+.col-custom-6 {
+	width: 50%;
+}
+.row-centered {
+    text-align:center;
+}
+.col-centered {
+    display:inline-block;
+    float:none;
+    margin: 0 auto;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+}
+.margin-top-30 {
+	margin-top: 30px;
+}
+/** End: Grid rules **/
 /**--------------------**/

@@ -1,0 +1,7 @@
+ela_image_uploader_homepage:
+    path:     /imageUploader
+    defaults: { _controller: ElaImageUploaderBundle:Default:index }
+
+ela_upload:
+    path:     /upload
+    defaults: { _controller: ElaImageUploaderBundle:Default:upload }

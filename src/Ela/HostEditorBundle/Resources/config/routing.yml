@@ -1,0 +1,3 @@
+ela_edit_host:
+    path:     /editHost
+    defaults: { _controller: ElaHostEditorBundle:Default:editHost }

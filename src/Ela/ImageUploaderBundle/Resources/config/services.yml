@@ -1,0 +1,4 @@
+services:
+#    ela_image_uploader.example:
+#        class: Ela\ImageUploaderBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
