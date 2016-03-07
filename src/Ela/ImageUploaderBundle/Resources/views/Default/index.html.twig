@@ -9,12 +9,12 @@
 		<div class="col-custom-6 col-centered">
 			<form enctype="multipart/form-data" method="post" action="{{ path('ela_upload') }}">
 			    <div class="row">
-			      <label for="filesToUpload">Select Files to Upload</label><br />
-			      <input type="file" name="filesToUpload[]" id="filesToUpload" multiple="multiple" />
-			      <output id="files1Info"></output>
+			      	<label for="fileToUpload">Select Files to Upload</label><br />
+			      	<input type="file" name="filesToUpload[]" id="filesToUpload" multiple="multiple" />
+			      	<output id="filesInfo"></output>
 			    </div>
 			    <div class="row">
-			      <input type="submit" value="Upload" />
+			      	<input type="submit" value="Upload" />
 			    </div>
 			</form>
 		</div>
@@ -22,7 +22,7 @@
 	<div class="row no-margin row-centered margin-top-30">
 		<div class="col-custom-6 col-centered">
 			<div id="dropTarget" style="width: 100%; height: 100px; border: 1px #ccc solid; padding: 10px;">Drop some files here</div>
-			<output id="filesInfo"></output>
+			<output id="files1Info"></output>
 		</div>
 	</div>
 {% endblock %}
@@ -41,7 +41,7 @@
 		        	console.log(file);
 		            result += '<div><img style="width: 90px;" src="' + file.mozFullPath+ '" /></div>';
 		        }
-		    	document.getElementById('filesInfo').innerHTML = '<div>' + result + '</div>';
+		    	document.getElementById('files1Info').innerHTML = '<div>' + result + '</div>';
 		    } else {
 		        alert('The File APIs are not fully supported in this browser.');
 		    }
@@ -62,7 +62,7 @@
 		                return function (evt) {
 		                    var div = document.createElement('div');
 		                    div.innerHTML = '<img style="width: 90px;" src="' + evt.target.result + '" />';
-		                    document.getElementById('files1Info').appendChild(div);
+		                    document.getElementById('filesInfo').appendChild(div);
 		                };
 		            }(file));
 		            reader.readAsDataURL(file);
@@ -70,6 +70,22 @@
 		    } else {
 		        alert('The File APIs are not fully supported in this browser.');
 		    }
+
+		    if (window.File && window.FileReader && window.FileList && window.Blob) {
+			    document.getElementById('filesToUpload').onchange = function(){
+			        var xhr = new XMLHttpRequest();
+			        xhr.onreadystatechange = function(ev){
+			            document.getElementById('filesInfo').innerHTML = 'Done!';
+			        };
+			        xhr.open('POST', '{{ path('ela_upload') }}', true);
+			        var files = document.getElementById('filesToUpload').files;
+			        var data = new FormData();
+			        for(var i = 0; i < files.length; i++) data.append('file' + i, files[i]);
+			        xhr.send(data);
+			    };
+			} else {
+			    alert('The File APIs are not fully supported in this browser.');
+			}
 		}
 				 
 		function dragOver(evt) {
